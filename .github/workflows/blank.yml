@@ -37,11 +37,11 @@ jobs:
           echo "${{secrets.GITHUB_TOKEN}}" | oras login ghcr.io -u ${{ github.actor }} --password-stdin
       - name: Push the artifact
         run: |
-          oras push --manifest-config /dev/null:application/vnd.sharepoint.package.config ghcr.io/${{ github.repository_owner }}/artefacto:1.0.1-SNAPSHOT artefacto.zip
+          oras push --manifest-config /dev/null:application/vnd.sharepoint.package ghcr.io/${{ github.repository_owner }}/artefacto:1.0.2-SNAPSHOT artefacto.zip
       - name: Pull de artifact
         run: | 
           mkdir resultado
           cd resultado
-          oras pull -v ghcr.io/${{ github.repository_owner }}/artefacto:1.0.1-SNAPSHOT 
+          oras pull -v -t application/vnd.sharepoint.package ghcr.io/${{ github.repository_owner }}/artefacto:1.0.2-SNAPSHOT 
           ls -la
           
