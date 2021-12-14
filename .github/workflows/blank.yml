@@ -23,4 +23,4 @@ jobs:
           rm -rf oras_0.12.0_*.tar.gz oras-install/
       - name: Test ORAS CLI installation
         run: |
-          oras-install/oras --help
+          oras --help
