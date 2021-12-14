@@ -24,3 +24,7 @@ jobs:
       - name: Test ORAS CLI installation
         run: |
           oras --help
+          oras help login
+          oras help logout
+          oras help pull 
+          oras help push
