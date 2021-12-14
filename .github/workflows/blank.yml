@@ -37,10 +37,10 @@ jobs:
           echo "${{secrets.GITHUB_TOKEN}}" | oras login ghcr.io -u ${{ github.actor }} --password-stdin
       - name: Push the artifact
         run: |
-          oras push ghcr.io/${{ github.repository_owner }}/artefacto:latest artefacto.zip
+          oras push ghcr.io/${{ github.repository_owner }}/artefacto:1.0.0-SNAPSHOT artefacto.zip
       - name: Pull de artifact
         run: | 
           mkdir resultado
           cd resultado
-          oras pull ghcr.io/${{ github.repository_owner }}/artefacto:latest
+          oras pull ghcr.io/${{ github.repository_owner }}/artefacto:1.0.0-SNAPSHOT
           ls -la
