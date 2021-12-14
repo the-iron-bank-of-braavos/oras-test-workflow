@@ -34,7 +34,7 @@ jobs:
           zip -q artefacto.zip artefacto.txt
       - name: Login to the ghcr
         run: |
-          oras login -p $GITHUB_TOKEN ghcr.io
+          oras login -p ${{secrets.GITHUB_TOKEN}} ghcr.io
       - name: Push the artifact
         run: |
           oras push ghcr.io/${{ github.repository_owner }}/artefacto:latest artefacto.zip
