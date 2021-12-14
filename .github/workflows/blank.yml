@@ -30,17 +30,18 @@ jobs:
           oras help push
       - name: Create and artifact to upload
         run: |
-          echo "prueba de contenido" >> artefacto.txt
+          echo "contenido de prueba del artefacto" >> artefacto.txt
           zip -q artefacto.zip artefacto.txt
       - name: Login to the ghcr
         run: |
           echo "${{secrets.GITHUB_TOKEN}}" | oras login ghcr.io -u ${{ github.actor }} --password-stdin
       - name: Push the artifact
         run: |
-          oras push ghcr.io/${{ github.repository_owner }}/artefacto:1.0.0-SNAPSHOT artefacto.zip
+          oras push --manifest-config /dev/null:application/vnd.sharepoint.package.config ghcr.io/${{ github.repository_owner }}/artefacto:1.0.1-SNAPSHOT artefacto.zip
       - name: Pull de artifact
         run: | 
           mkdir resultado
           cd resultado
-          oras pull ghcr.io/${{ github.repository_owner }}/artefacto:1.0.0-SNAPSHOT
+          oras pull -v ghcr.io/${{ github.repository_owner }}/artefacto:1.0.1-SNAPSHOT 
           ls -la
+          
